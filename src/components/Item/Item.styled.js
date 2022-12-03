@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 export const ContactField = styled.div`
+display: inline-flex;
 align-items:center;
+gap: 16px;
 
 `;
 

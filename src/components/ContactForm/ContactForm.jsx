@@ -2,29 +2,29 @@ import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact, getContacts } from 'redux/contactsSlice';
-import {ErrorMessage, Formik} from 'formik';
-import * as yup from 'yup';
+import {ErrorMessage} from 'formik';
+// import * as yup from 'yup';
 import { Wrapper, NameLable, SubmitForm, Input, Error } from './ContactForm.styled';
 
-const initialValues=  {
-        name: '',
-        number: ''
-};
+// const initialValues=  {
+//         name: '',
+//         number: ''
+// };
     
-const schema = yup.object().shape({
-    name: yup.string().required(),
-    number: yup.string().required(),
-});
+// const schema = yup.object().shape({
+//     name: yup.string().required(),
+//     number: yup.string().required(),
+// });
 
-const NameInputId = nanoid();
-const NumberInputId = nanoid();
+// const NameInputId = nanoid();
+// const NumberInputId = nanoid();
 
 export const ContactForm = () => {
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
 
-    const onChangeName = event => setName(event.currentTarget.values);
-    const onChangeNumber = event => setNumber(event.currentTarget.values);
+    const onChangeName = event => setName(event.currentTarget.value);
+    const onChangeNumber = event => setNumber(event.currentTarget.value);
 
     const contacts = useSelector(getContacts);
     const dispatch = useDispatch();
@@ -39,7 +39,7 @@ export const ContactForm = () => {
         };
 
         if (!contacts.some(contact => contact.name.toLowerCase() === name.toLowerCase())) { dispatch(addContact(newContact)) }
-        else { <Error>{`You have this user in your contact list`}</Error> }
+        else { <ErrorMessage name="number" render={msg => <Error>{`You have this user in your contact list`}</Error>} /> }
         
         resetForm();
 
@@ -52,10 +52,6 @@ export const ContactForm = () => {
 
     return (
         <div>
-            <Formik
-                initialValues={initialValues}
-                validationSchema={schema}
-                onSubmit={onSubmitForm}>
                 <Wrapper>
                     <NameLable htmlFor={NameInputId}>Name</NameLable>
                     <Input
@@ -81,7 +77,6 @@ export const ContactForm = () => {
                     <ErrorMessage name="number" render={msg => <Error>{`Please, enter Number`}</Error>} />
                     <SubmitForm type="submit" name="Add contact">Add contact</SubmitForm>
                 </Wrapper>
-            </Formik>
         </div>
     );
 };

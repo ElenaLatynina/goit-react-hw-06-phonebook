@@ -5,10 +5,7 @@ export const Item = ({ name, number, deleteContact }) => {
     return (
         <>
             <ContactField>
-                <DataContact>{ name}</DataContact>
-            </ContactField>
-            <ContactField>
-                <DataContact>{name}</DataContact>
+            <DataContact>{name}</DataContact>
             <DataContact>{number}</DataContact>
             <Button type="button" onClick={deleteContact}></Button>
             </ContactField>
