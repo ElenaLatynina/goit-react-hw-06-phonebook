@@ -9,6 +9,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { persistContactReducer } from '../redux/contactsSlice';
+
 export const store = configureStore({
     reducer: {
         contacts:persistContactReducer,

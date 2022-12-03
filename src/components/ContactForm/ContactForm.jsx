@@ -1,10 +1,10 @@
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact, getContacts } from 'redux/contactsSlice';
+import { addContact, getContacts } from '../../redux/contactsSlice';
 import {ErrorMessage} from 'formik';
 // import * as yup from 'yup';
-import { Wrapper, NameLable, SubmitForm, Input, Error } from './ContactForm.styled';
+import { FormWrapper, NameLable, SubmitForm, Input, Error } from './ContactForm.styled';
 
 // const initialValues=  {
 //         name: '',
@@ -51,10 +51,9 @@ export const ContactForm = () => {
   };
 
     return (
-        <div>
-                <Wrapper>
-                    <NameLable htmlFor={NameInputId}>Name</NameLable>
-                    <Input
+        <FormWrapper onSubmit={onSubmitForm}>
+            <NameLable>Name</NameLable>
+                <Input
                         type="text"
                         name="name"
                         value = {name}
@@ -64,7 +63,7 @@ export const ContactForm = () => {
                         onChange={onChangeName}
                     />
                     <ErrorMessage name="name" render={msg => <Error>{`Please, enter Name`}</Error>} />
-                    <NameLable htmlFor={NumberInputId}>Number</NameLable>
+                    <NameLable>Number</NameLable>
                     <Input
                         type="tel"
                         name="number"
@@ -72,11 +71,10 @@ export const ContactForm = () => {
                         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                         onChange={onChangeNumber}
-                        // id={NumberInputId}
                     />
                     <ErrorMessage name="number" render={msg => <Error>{`Please, enter Number`}</Error>} />
                     <SubmitForm type="submit" name="Add contact">Add contact</SubmitForm>
-                </Wrapper>
+                </FormWrapper>
         </div>
     );
 };
