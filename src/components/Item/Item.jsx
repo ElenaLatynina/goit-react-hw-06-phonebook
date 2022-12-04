@@ -7,7 +7,7 @@ export const Item = ({ name, number, deleteContact }) => {
             <ContactField>
             <DataContact>{name}</DataContact>
             <DataContact>{number}</DataContact>
-            <Button type="button" onClick={deleteContact}></Button>
+            <Button type="button" onClick={deleteContact}>Delete</Button>
             </ContactField>
         </>
     );

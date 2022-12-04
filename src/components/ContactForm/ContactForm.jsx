@@ -2,22 +2,22 @@ import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact, getContacts } from '../../redux/contactsSlice';
-import {ErrorMessage} from 'formik';
-// import * as yup from 'yup';
-import { FormWrapper, NameLable, SubmitForm, Input, Error } from './ContactForm.styled';
+import {Formik,ErrorMessage} from 'formik';
+import * as yup from 'yup';
+import { NameLable, SubmitForm, Input, Error, Wrapper } from './ContactForm.styled';
 
-// const initialValues=  {
-//         name: '',
-//         number: ''
-// };
+const initialValues=  {
+        name: '',
+        number: ''
+};
     
-// const schema = yup.object().shape({
-//     name: yup.string().required(),
-//     number: yup.string().required(),
-// });
+const schema = yup.object().shape({
+    name: yup.string().required(),
+    number: yup.string().required(),
+});
 
-// const NameInputId = nanoid();
-// const NumberInputId = nanoid();
+const NameInputId = nanoid();
+const NumberInputId = nanoid();
 
 export const ContactForm = () => {
     const [name, setName] = useState('');
@@ -50,31 +50,36 @@ export const ContactForm = () => {
     setNumber('');
   };
 
-    return (
-        <FormWrapper onSubmit={onSubmitForm}>
-            <NameLable>Name</NameLable>
-                <Input
+     return (
+        <div>
+            <Formik
+                initialValues={initialValues}
+                validationSchema={schema}
+                onSubmit={onSubmitForm}>
+                <Wrapper>
+                    <NameLable htmlFor={NameInputId}>Name</NameLable>
+                     <Input
+                        onChange={onChangeName}
                         type="text"
                         name="name"
-                        value = {name}
                         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-                        // id={NameInputId}
-                        onChange={onChangeName}
+                        id={NameInputId}
                     />
                     <ErrorMessage name="name" render={msg => <Error>{`Please, enter Name`}</Error>} />
-                    <NameLable>Number</NameLable>
-                    <Input
+                    <NameLable htmlFor={NumberInputId}>Number</NameLable>
+                     <Input
+                        onChange={onChangeNumber}
                         type="tel"
                         name="number"
-                        value = {number}
                         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-                        onChange={onChangeNumber}
+                        id={NumberInputId}
                     />
                     <ErrorMessage name="number" render={msg => <Error>{`Please, enter Number`}</Error>} />
                     <SubmitForm type="submit" name="Add contact">Add contact</SubmitForm>
-                </FormWrapper>
+                </Wrapper>
+            </Formik>
         </div>
     );
 };

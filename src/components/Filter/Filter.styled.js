@@ -9,7 +9,7 @@ padding: 8px;
 `;
 
 export const NameInput = styled.input`
-margin-bottom: 10px;
+margin-top: 16px;
 padding: 8px;
 font-size: 12px;
 background:#E0FFFF;
@@ -20,6 +20,6 @@ border-radius: 3px;
 export const NameLable = styled.label`
 display: flex;
 flex-direction: column;
-margin-bottom: 8px;
+margin-bottom: 16px;
 font-size: 16px;
 `;

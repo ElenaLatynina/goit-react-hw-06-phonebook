@@ -8,9 +8,13 @@ list-style: none;
 
 export const ContactItem = styled.li`
 display:flex;
-gap:10px;
+align-items:center;
+justify-content: space-between;
+/* gap:10px; */
 margin-bottom: 5px;
 padding: 0;
+margin-bottom:8px;
+
 
 `;
 
@@ -29,4 +33,4 @@ border-radius: 15px;
 border-color: blue;
 background-color: blue;
 color: white;
-`
+`;

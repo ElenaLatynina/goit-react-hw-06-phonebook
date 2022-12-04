@@ -6,6 +6,18 @@ import { Title, Container} from './App.styled';
 import { Filter } from './Filter/Filter';
 
 export const App = () => {
+  return (
+    <Container>
+      <h1>Phonebook</h1>
+      <ContactForm />
+      <Title>Contacts</Title>
+      <Filter/>
+      <ContactList/>
+    </Container>
+  )
+}
+
+// export const App = () => {
   // const [contacts, setContacts] = useState(() =>
   // (JSON.parse(window.localStorage.getItem('contacts')) || []));
   // const [filter, setFilter] = useState('');
@@ -43,16 +55,16 @@ export const App = () => {
   //   contact.name.toLowerCase().includes(normalizedFilter)
   // );
 
-  return (
-    <Container>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <Title>Contacts</Title>
-      <Filter />
-      <ContactList  />
-    </Container>);
+//   return (
+//     <Container>
+//       <h1>Phonebook</h1>
+//       <ContactForm/>
+//       <Title>Contacts</Title>
+//       <Filter/>
+//       <ContactList/>
+//     </Container>);
 
-};
+// };
 
 export default App;
 
