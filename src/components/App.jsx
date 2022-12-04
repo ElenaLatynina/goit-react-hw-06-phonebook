@@ -11,60 +11,11 @@ export const App = () => {
       <h1>Phonebook</h1>
       <ContactForm />
       <Title>Contacts</Title>
-      <Filter/>
-      <ContactList/>
+      <Filter />
+      <ContactList />
     </Container>
-  )
-}
-
-// export const App = () => {
-  // const [contacts, setContacts] = useState(() =>
-  // (JSON.parse(window.localStorage.getItem('contacts')) || []));
-  // const [filter, setFilter] = useState('');
-
-  // useEffect(() => {
-  //   window.localStorage.setItem('contacts',
-  //     JSON.stringify(contacts));
-  // }, [contacts]);
-
-  // const addContact = ({ name, number }) => {
-  //   const newContact = {
-  //     id: nanoid(),
-  //     name,
-  //     number,
-  //   };
-
-  //   const oldContact = contacts.find(contact => contact.name === name);
-  //   oldContact ? alert(`${name } is already in contacts`) :
-  //     setContacts(contacts => [newContact, ...contacts]);
-   
-  // };
-
-  // const findContact = searchName => {
-  //   setFilter(searchName);
-  // };
-
-  // const deleteContact = contactId => {
-  //   setContacts(prevState => (
-  //     prevState.filter(contact => contact.id !== contactId)
-  //   ));
-  // };
-
-  // const normalizedFilter = filter.toLowerCase();
-  // const visibleContacts = contacts.filter(contact =>
-  //   contact.name.toLowerCase().includes(normalizedFilter)
-  // );
-
-//   return (
-//     <Container>
-//       <h1>Phonebook</h1>
-//       <ContactForm/>
-//       <Title>Contacts</Title>
-//       <Filter/>
-//       <ContactList/>
-//     </Container>);
-
-// };
+  );
+};
 
 export default App;
 

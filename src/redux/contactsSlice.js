@@ -18,12 +18,13 @@ const contactsSlice = createSlice({
 
     reducers: {
     addContact(state, { payload }) {
-        state.items.push(payload);
+    state.items.push(payload);
     },
     
     deleteContact(state, { payload }) {
-            state.items = state.items.filter(item => item.id !== payload)
+    state.items = state.items.filter(item => item.id !== payload)
         },
+    
     changeFilter(state, { payload }) {
         state.filter = payload;
     },
