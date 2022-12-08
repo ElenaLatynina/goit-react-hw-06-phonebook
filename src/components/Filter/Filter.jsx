@@ -1,13 +1,17 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeFilter, getFilter } from 'redux/contactsSlice';
+import { getFilter, filterContact } from 'redux/flterSlice';
 import { NameInput, NameLable, ContactBook } from './Filter.styled';
 
 export const Filter = () => {
-  const contactsFilter = useSelector(getFilter);
+  
   const dispatch = useDispatch();
-  const changeFieldValue = event => dispatch(changeFilter(event.currentTarget.value));
-   
+  const filter = useSelector(getFilter);
+
+  const changeFieldValue = event => {
+    dispatch(filterContact(event.currentTarget.value));
+  };
+
   return (
     <ContactBook>
       <NameLable>
@@ -15,7 +19,7 @@ export const Filter = () => {
         <NameInput
           type="text"
           name="search"
-          value={contactsFilter}
+          value={filter}
           onChange={changeFieldValue}
         ></NameInput>
       </NameLable>
@@ -25,9 +29,9 @@ export const Filter = () => {
   
 
 
-Filter.prototype = {
-  filter: PropTypes.string.isRequired,
-  changeFilter: PropTypes.func.isRequired,
-};
+// Filter.prototype = {
+//   filter: PropTypes.string.isRequired,
+//   changeFilter: PropTypes.func.isRequired,
+// };
 
 export default Filter;

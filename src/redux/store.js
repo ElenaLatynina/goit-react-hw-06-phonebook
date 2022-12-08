@@ -13,7 +13,7 @@ import {
 
 export const store = configureStore({
     reducer: {
-        contacts: persistContactReducer,
+        contactsList: persistContactReducer,
         filter: filterSlice.reducer,
         
     },

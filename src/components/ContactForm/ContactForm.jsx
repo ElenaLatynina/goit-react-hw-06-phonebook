@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts, addContact } from '../../redux/contactsSlice';
+import { getContacts , addContact} from '../../redux/contactsSlice';
 import { nanoid } from 'nanoid';
 
 import { NameLable, SubmitForm, Input, FormWrapper } from './ContactForm.styled';
@@ -8,20 +8,20 @@ import { NameLable, SubmitForm, Input, FormWrapper } from './ContactForm.styled'
 export const ContactForm = () => {
     const dispatch = useDispatch();
     const contacts = useSelector(getContacts).contacts;
+    
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
 
     const onSubmitForm = event => {
         event.preventDefault();
 
-        addContact({ name, number });
-        
+        addNewContact({ name, number });
         setName('');
         setNumber('');
         
     };
 
-    const addContact = ({ name, number }) => {
+    const addNewContact = ({ name, number }) => {
         const newContact = {
             id: nanoid(),
             name,
@@ -41,12 +41,20 @@ export const ContactForm = () => {
         dispatch(addContact(newContact));
     };
 
+    const handleChange = event => {
+        event.currentTarget.type === 'text' ?
+            setName(event.currentTarget.value) :
+            setNumber(event.currentTarget.value);
+    }
+
         return (
             <FormWrapper onSubmit={onSubmitForm}>
                 <NameLable>Name
                     <Input
                         type="text"
                         name="name"
+                        value={name}
+                        onChange ={handleChange}
                         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                         required />
